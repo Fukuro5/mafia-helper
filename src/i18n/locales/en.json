@@ -1,0 +1,40 @@
+{
+  "common": {
+    "next": "Next"
+  },
+  "menuPage": {
+    "startButton": "Start",
+    "rulesButton": "Rules",
+    "settingsButton": "Settings",
+    "exitButton": "Exit"
+  },
+  "playersCountPage": {
+    "errors": {
+      "number": "Count of players must be a number",
+      "required": "Count of players is required",
+      "max": "Count of players must be less than 20",
+      "min": "Count of players must be more than 5"
+    },
+    "label": "Enter count of players"
+  },
+  "playersNamePage": {
+    "label": "Enter player №{{number}} name"
+  },
+  "playersRolesPage": {
+    "roles": {
+      "seer": "Seer",
+      "mason": "Mason",
+      "protector": "Protector"
+    }
+  },
+  "gamePage": {
+    "currentRound": "Current round is {{currentRound}}",
+    "talking": "Now is talking {{playerName}}",
+    "voting": "Now is voting time",
+    "onVote": "Players on vote"
+  },
+  "gameOverScreen": {
+    "title": "Game over",
+    "winner": "Winner is Mafia",
+  }
+}

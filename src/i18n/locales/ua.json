@@ -1,0 +1,40 @@
+{
+  "common": {
+    "next": "Далі"
+  },
+  "menuPage": {
+    "startButton": "Початок",
+    "rulesButton": "Правила",
+    "settingsButton": "Налаштування",
+    "exitButton": "Вихід"
+  },
+  "playersCountPage": {
+    "errors": {
+      "number": "Кількість гравців повинна бути числом",
+      "required": "Поле кількість гравців обов'язкове",
+      "max": "Кількість гравців має бути менше ніж 20",
+      "min": "Кількість гравців має бути більше ніж 5"
+    },
+    "label": "Введіть кількість гравців"
+  },
+  "playersNamePage": {
+    "label": "Введіть ім'я гравця №{{number}}"
+  },
+  "playersRolesPage": {
+    "roles": {
+      "seer": "Мирний",
+      "mason": "Мафія",
+      "protector": "Комісар"
+    }
+  },
+  "gamePage": {
+    "currentRound": "Зараз раунд №{{currentRound}}",
+    "talking": "Зараз розмовляє {{playerName}}",
+    "voting": "Час провести голосування",
+    "onVote": "Гравці на голосуванні"
+  },
+  "gameOverScreen": {
+    "title": "Гра завершена",
+    "winner": "Перемогла Мафія",
+  }
+}
