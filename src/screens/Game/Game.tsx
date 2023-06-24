@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
-  View, FlatList, StyleSheet, DrawerLayoutAndroid, Text, Image, TextInput,
+  View, FlatList, StyleSheet, DrawerLayoutAndroid, Text, Image, TextInput, NativeSyntheticEvent, TextInputChangeEventData,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/Button/Button';
 import { PATHS } from '../../constants/paths';
 import CountdownTimer from './components/CountdownTimer';
 import { selectPlayers, selectVotedPlayers } from '../../store/Game/selectors';
 import {
-  addPlayerOnVote, addVotes, removePlayer, resetVotedPlayers,
+  addVotes,
+  removePlayer, resetVotedPlayers,
 } from '../../store/Game/actions';
 import ButtonImage from '../../components/ButtonImage/ButtonImage';
 import playPng from '../../assets/images/play.png';
 import dayPng from '../../assets/images/day.png';
 import nightPng from '../../assets/images/night.png';
-import seerPng from '../../assets/images/seer.png';
-import masonPng from '../../assets/images/mason.png';
-import protectorPng from '../../assets/images/protector.png';
+import NavigationView from './components/NavigationView';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { IPlayer } from 'store/Game/types';
 
 export default function Game() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const players = useSelector(selectPlayers);
@@ -49,60 +49,17 @@ export default function Game() {
     },
   });
 
-  const onActionsButtonPress = (playerIndex) => {
-    if (currentTime === 'Night') {
-      dispatch(removePlayer(players[playerIndex].name));
-    } else {
-      dispatch(addPlayerOnVote(players[playerIndex]));
-    }
-  };
-
-  const getPlayerRole = (role) => {
-    if (role === 'masons') return masonPng;
-    if (role === 'protector') return protectorPng;
-    return seerPng;
-  };
-
-  const navigationView = (
-    <View style={{
-      flex: 1, backgroundColor: '#424242', alignItems: 'center', justifyContent: 'center',
-    }}
-    >
-      <FlatList
-        data={players}
-        keyExtractor={(item, index) => index.toString()}
-        horizontal={false}
-        renderItem={({ index }) => (
-          <View style={{ paddingVertical: 5, flexDirection: 'column' }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Image
-                source={getPlayerRole(players[index].role)}
-                style={{ width: 20, height: 20, marginRight: 10 }}
-              />
-              <Text style={{ color: '#fff' }}>
-                {players[index].name}
-              </Text>
-            </View>
-            <Button
-              title={currentTime === 'Night' ? 'Kill' : 'On vote'}
-              onPress={() => onActionsButtonPress(index)}
-            />
-          </View>
-        )}
-      />
-    </View>
-  );
-
   const checkIsGameOver = () => {
-    if (players.filter((player) => player.role === 'masons').length === 0) {
+    if (players.filter((player: IPlayer) => player.role === 'masons').length === 0) {
       return true;
     }
-    if (players.filter((player) => player.role === 'masons').length >= (players.filter((player) => player.role === 'protector').length + players.filter((player) => player.role === 'seer').length)) {
+    if (players.filter((player: IPlayer) => player.role === 'masons').length >= (players.filter((player: IPlayer) => player.role === 'protector').length + players.filter((player: IPlayer) => player.role === 'seer').length)) {
       return true;
     }
 
     return true;
   };
+
   const onComplete = () => {
     setIsTimerPlaying(false);
 
@@ -147,7 +104,7 @@ export default function Game() {
     }
   }, []);
 
-  const handleSubmitEditing = (e, name) => {
+  const handleSubmitEditing = (e: NativeSyntheticEvent<TextInputChangeEventData>, name: string) => {
     console.log(e.nativeEvent.text);
     dispatch(addVotes(name, +e.nativeEvent.text));
   };
@@ -156,7 +113,7 @@ export default function Game() {
     <DrawerLayoutAndroid
       drawerWidth={200}
       drawerPosition="left"
-      renderNavigationView={() => navigationView}
+      renderNavigationView={() => <NavigationView players={players} currentTime={currentTime} />}
       style={styles.container}
     >
       <View style={{ flex: 1, alignItems: 'center' }}>

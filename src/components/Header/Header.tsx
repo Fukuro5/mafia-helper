@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image, StyleSheet, Text, View, ProgressBarAndroid,
+  StyleSheet, View,
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
@@ -42,7 +42,7 @@ function Header() {
     <View style={styles.container}>
       <StepIndicator
         customStyles={customStyles}
-        currentPosition={1}
+        currentPosition={0}
         labels={labels}
         stepCount={3}
       />

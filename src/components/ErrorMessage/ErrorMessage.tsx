@@ -1,12 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   StyleSheet, Text,
 } from 'react-native';
+import { FieldError } from 'react-hook-form';
+
+interface IErrorMessageProps {
+  error: Pick<FieldError, 'message'>;
+}
 
 export default function ErrorMessage({
   error,
-}) {
+}: IErrorMessageProps) {
   const styles = StyleSheet.create({
     errorMessage: {
       color: '#ffab91',
@@ -20,7 +24,3 @@ export default function ErrorMessage({
     <Text style={styles.errorMessage}>{error && error.message}</Text>
   );
 }
-
-ErrorMessage.propTypes = {
-  label: PropTypes.string.isRequired,
-};

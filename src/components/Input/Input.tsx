@@ -1,16 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import {
   StyleSheet, Text, View, TextInput,
 } from 'react-native';
 import {
-  Controller, FormProvider, useForm, useFormContext,
+  Controller, useFormContext,
 } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
+interface IInputProps {
+  label: string;
+  onSubmitEditing: () => void;
+  name: string;
+}
+
 export default function Input({
-  label, value, onChange, inputMode, defaultValue, onSubmitEditing, name,
-}) {
+  label, onSubmitEditing, name,
+}: IInputProps) {
   const { control, getValues } = useFormContext();
   const styles = StyleSheet.create({
     container: {
@@ -31,8 +35,6 @@ export default function Input({
     },
   });
 
-  console.log(getValues('playersCount'));
-
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -43,19 +45,15 @@ export default function Input({
           <>
             <TextInput
               style={styles.input}
-              // inputMode={inputMode}
-              // onSubmitEditing={onSubmitEditing}
               onBlur={onSubmitEditing}
               onChangeText={field.onChange}
             />
-            <ErrorMessage error={error} />
+            {error && (
+              <ErrorMessage error={error} />
+            )}
           </>
         )}
       />
     </View>
   );
 }
-
-Input.propTypes = {
-  label: PropTypes.string.isRequired,
-};

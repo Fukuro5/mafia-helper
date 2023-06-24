@@ -1,4 +1,5 @@
-import { ADD_PLAYER_ON_VOTE, CHANGE_PLAYERS, CHANGE_VOTED_PLAYERS, RESET_VOTED_PLAYERS, SET_COUNT_OF_PLAYERS } from './types';
+import { GAME_ACTIONS } from './consts';
+import { IGameReducer } from './types';
 
 const initialState = {
   countOfPlayers: 0,
@@ -7,30 +8,30 @@ const initialState = {
   voted: [],
 };
 
-export default function game(state = initialState, action) {
+const game: IGameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_COUNT_OF_PLAYERS:
+    case GAME_ACTIONS.SET_COUNT_OF_PLAYERS:
       return {
         ...state,
         countOfPlayers: action.countOfPlayers,
         players: action.players,
       };
-    case CHANGE_PLAYERS:
+    case GAME_ACTIONS.CHANGE_PLAYERS:
       return {
         ...state,
         players: action.players,
       };
-    case ADD_PLAYER_ON_VOTE:
+    case GAME_ACTIONS.ADD_PLAYER_ON_VOTE:
       return {
         ...state,
         voted: [...state.voted, action.player],
       };
-    case CHANGE_VOTED_PLAYERS:
+    case GAME_ACTIONS.CHANGE_VOTED_PLAYERS:
       return {
         ...state,
         voted: action.voted,
       };
-    case RESET_VOTED_PLAYERS:
+    case GAME_ACTIONS.RESET_VOTED_PLAYERS:
       return {
         ...state,
         voted: [],
@@ -39,3 +40,5 @@ export default function game(state = initialState, action) {
       return state;
   }
 }
+
+export default game;

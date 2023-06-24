@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { ConfigureStoreOptions, configureStore } from '@reduxjs/toolkit';
 
 import rootReducer from './reducers';
 
-const createStore = (options) => configureStore({
+const createStore = (options?: ConfigureStoreOptions['preloadedState']) => configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     immutableCheck: false,

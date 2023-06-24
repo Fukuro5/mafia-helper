@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   View, FlatList, StyleSheet,
@@ -14,7 +13,11 @@ import { changePlayers } from '../../../../store/Game/actions';
 import { useGameSetupPlayersNameSchema } from './GameSetupPlayersNameConfig';
 import { useTranslation } from 'react-i18next';
 
-export default function GameSetupPlayersNames({ nextStep }) {
+interface IGameSetupPlayersNamesProps {
+  nextStep: () => void;
+}
+
+export default function GameSetupPlayersNames({ nextStep }: IGameSetupPlayersNamesProps) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const players = useSelector(selectPlayers);

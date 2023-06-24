@@ -1,10 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
-  StyleSheet, Text, Pressable, TouchableOpacity, Image,
+  StyleSheet, TouchableOpacity, Image,
 } from 'react-native';
 
-export default function ButtonImage({ image, onPress }) {
+interface IButtonImageProps {
+  image: any;
+  onPress: () => void;
+}
+
+export default function ButtonImage({ image, onPress }: IButtonImageProps) {
   const styles = StyleSheet.create({
     button: {
       marginVertical: 20,
@@ -20,12 +24,3 @@ export default function ButtonImage({ image, onPress }) {
     </TouchableOpacity>
   );
 }
-
-ButtonImage.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
-};
-
-ButtonImage.defaultProps = {
-  onPress: () => {},
-};

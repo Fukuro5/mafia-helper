@@ -71,7 +71,7 @@ export default function GameSetupPlayersRoles() {
           </View>
         )}
       />
-      <Button title="Next" onPress={goNext} />
+      <Button title={t('common.next')} onPress={goNext} />
     </View>
   );
 }

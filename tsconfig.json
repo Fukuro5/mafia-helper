@@ -1,3 +1,33 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": "src",
+    "jsx": "react-jsx"
+  },
+  "baseUrl": "./src",
+  "paths": {
+    "components/*": ["./src/components/*"],
+    "constants/*": ["./src/constants/*"],
+    "assets/*": ["./src/assets/*"],
+    "store/*": ["./src/store/*"],
+    "hooks/*": ["./src/hooks/*"],
+    "utils/*": ["./src/utils/*"],
+    "pages/*": ["./src/pages/*"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

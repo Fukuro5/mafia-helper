@@ -2,10 +2,14 @@ import React from 'react';
 import { Text } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
-export default function CountdownTimer({ isTimerPlaying, onComplete }) {
+interface ICountdownTimerProps {
+  isTimerPlaying: boolean;
+  onComplete: () => void;
+}
+
+export default function CountdownTimer({ isTimerPlaying, onComplete }: ICountdownTimerProps) {
   return (
     <CountdownCircleTimer
-      key={isTimerPlaying}
       isPlaying={isTimerPlaying}
       duration={1}
       size={100}

@@ -1,10 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   StyleSheet, Text, Pressable,
 } from 'react-native';
 
-export default function Button({ title, onPress }) {
+interface IButtonProps {
+  title: string;
+  onPress: () => void;
+}
+
+export default function Button({ title, onPress }: IButtonProps) {
   const styles = StyleSheet.create({
     button: {
       alignItems: 'center',
@@ -27,12 +31,3 @@ export default function Button({ title, onPress }) {
     </Pressable>
   );
 }
-
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
-};
-
-Button.defaultProps = {
-  onPress: () => {},
-};
