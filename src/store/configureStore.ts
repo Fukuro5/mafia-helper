@@ -12,4 +12,6 @@ const createStore = (options?: ConfigureStoreOptions['preloadedState']) => confi
   ...options,
 });
 
+export const store = createStore();
+
 export default createStore;

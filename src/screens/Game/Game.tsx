@@ -17,7 +17,7 @@ import playPng from '../../assets/images/play.png';
 import dayPng from '../../assets/images/day.png';
 import nightPng from '../../assets/images/night.png';
 import NavigationView from './components/NavigationView';
-import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { IPlayer } from 'store/Game/types';
 
 export default function Game() {
